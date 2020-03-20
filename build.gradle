@@ -1,0 +1,32 @@
+plugins {
+  id 'java'
+  id 'groovy'
+  id 'com.github.johnrengelman.shadow' version '1.2.3'
+  id "com.katalon.gradle-plugin" version "0.0.6"
+}
+
+group = 'com.katalon.gradle.plugin'
+version = '0.0.1'
+
+repositories {
+  jcenter()
+  mavenCentral()
+}
+
+sourceSets {
+  main {
+    groovy {
+      srcDirs = ['Keywords', 'Include/scripts/groovy']
+      srcDir 'Libs'
+    }
+  }
+}
+
+shadowJar {
+  exclude 'Temp*.class'
+}
+
+katalon {
+  dependencyPrefix = "com.katalon"
+  minimize = false
+}
